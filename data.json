@@ -1,0 +1,9 @@
+{
+    "applications":[
+        {"id":"1","name":"Application 1","developer":"DEVELOPER 1"},
+        {"id":"2","name":"Application 2","developer":"DEVELOPER 2"},
+        {"id":"3","name":"Application 3","developer":"DEVELOPER 3"},
+        {"id":"4","name":"Application 4","developer":"DEVELOPER 4"},
+        {"id":"5","name":"Application 5","developer":"DEVELOPER 5"}
+    ]
+}
