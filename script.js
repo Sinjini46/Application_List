@@ -12,8 +12,9 @@ function appTemplate(app, index) {
     className: "app-card",
     style: style,  // Apply color dynamically
     children: [
-      { tag: "p", text: 'Name: ' + app.name },
-      { tag: "p", text: 'Developer: ' + app.developer }
+      { tag: "p", text: app.id },
+      { tag: "p", text: app.name },
+      { tag: "p", text: app.developer }
     ]
   };
 }
@@ -33,9 +34,9 @@ fetch('data.json')
 
       // Add children directly
       template.children.forEach(child => {
-        const childEl = document.createElement(child.tag);
-        childEl.textContent = child.text;
-        card.appendChild(childEl);
+        const children = document.createElement(child.tag);
+        children.textContent = child.text;
+        card.appendChild(children);
       });
 
       container.appendChild(card);
