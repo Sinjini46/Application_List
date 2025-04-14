@@ -1,15 +1,44 @@
+// Template function that returns a structure with dynamic background color
+function appTemplate(app, index) {
+  const colors = [
+    '#ff6f61', '#6a1b9a', '#00897b', '#3949ab', '#f4511e'
+  ];
+
+  // Create the style string using concatenation
+  var style = 'background-color: ' + colors[index % colors.length] + ';';
+
+  return {
+    tag: "div",
+    className: "app-card",
+    style: style,  // Apply color dynamically
+    children: [
+      { tag: "p", text: 'Name: ' + app.name },
+      { tag: "p", text: 'Developer: ' + app.developer }
+    ]
+  };
+}
+
+// Fetch and render data
 fetch('data.json')
-.then(response => response.json())
-.then(appData =>{
-    appData.applications.forEach(app =>{
-        const container=document.getElementById("app-container");
-        const appElement=document.createElement("div");
-        appElement.className="app-card";
-        appElement.innerHTML=`
-        <h2>${app.id}</h2>
-        <h3>${app.name}</h3>
-        <p>${app.developer}</p>
-        `;
-        container.appendChild(appElement);
+  .then(response => response.json())
+  .then(appData => {
+    const container = document.getElementById("app-container");
+
+    appData.applications.forEach((app, index) => {
+      const template = appTemplate(app, index);
+
+      const card = document.createElement(template.tag);
+      if (template.className) card.className = template.className;
+      if (template.style) card.setAttribute('style', template.style); // Apply dynamic style
+
+      // Add children directly
+      template.children.forEach(child => {
+        const childEl = document.createElement(child.tag);
+        childEl.textContent = child.text;
+        card.appendChild(childEl);
+      });
+
+      container.appendChild(card);
     });
-}).catch(error => console.error("Error in json",error));
+  })
+  .catch(error => console.error("Error loading JSON:", error));

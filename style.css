@@ -8,7 +8,7 @@ h1{
 }
 #app-container{
     display:grid;
-    grid-template-columns:repeat(auto-fit,220px);
+    grid-template-columns:repeat(auto-fit,225px);
     justify-content: center;
     gap:20px;
     margin-top: 20px;
